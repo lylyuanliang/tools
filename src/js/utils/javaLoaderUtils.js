@@ -1,9 +1,9 @@
-import {FileUtils} from "./fileUtils";
-import path from "path";
-import { Message } from 'element-ui';
+import {FileUtils} from "./fileUtils.js";
 
+let path = require("path")
 let loaded = false;
 let java = require("java");
+const {dialog} = require('electron').remote;
 export default class JavaLoaderUtils {
     static init(jarFilePath) {
         if (!loaded) {
@@ -13,7 +13,9 @@ export default class JavaLoaderUtils {
             }
             let exist = FileUtils.existFile(jarFilePath);
             if (!exist) {
-                Message.error(`lib路径不存在 : ${jarFilePath}`);
+                dialog.showMessageBox({
+                    message: `lib路径不存在 : ${jarFilePath}`
+                });
                 return [];
             }
             this.loadJars(jarFilePath);
@@ -38,11 +40,15 @@ export default class JavaLoaderUtils {
             return null;
         }
 
-        if(!loaded) {
+        if(!this.isLoaded()) {
             this.init();
         }
 
-        return java.import(classFullName);
+        if(this.isLoaded()) {
+            return java.import(classFullName);
+        }
+
+       return null;
     }
 
     /**

@@ -4,7 +4,7 @@ import JarService from "./jarService.js";
 
 export default class Service {
     constructor($, layer) {
-        if(!Service.instance) {
+        if (!Service.instance) {
             // 本地接口
             this.webService = new WebService($, layer);
             // 远程接口
@@ -29,12 +29,13 @@ export default class Service {
      * 获取接口列表
      */
     getServiceTypeList(callback, sysType) {
-        if(!sysType || sysType === SysType.LOCAL) {
-            debugger;
-            // 本地接口
+        if (!sysType || sysType === SysType.OTHER) {
+            let data = this.jarService.getServiceTypeList(callback);
+            if (callback && typeof callback === "function") {
+                callback(data);
+            }
+        } else if (sysType === SysType.LOCAL) {
             this.webService.getServiceTypeList(callback);
-        }else if (sysType === SysType.OTHER) {
-            this.jarService.getServiceTypeList(callback);
         }
     }
 
@@ -42,11 +43,14 @@ export default class Service {
      * 获取接口方法列表
      */
     getFunctionList(serviceType, callback, sysType) {
-        if(!sysType || sysType === SysType.LOCAL) {
+        if (!sysType || sysType === SysType.OTHER) {
+            let data = this.jarService.getFunctionList(serviceType, callback);
+            if (callback && typeof callback === "function") {
+                callback(data);
+            }
+        } else if (sysType === SysType.LOCAL) {
             // 本地接口
-            this.webService.getFunctionList(callback);
-        }else if (sysType === SysType.OTHER) {
-            this.jarService.getFunctionList(callback);
+            this.webService.getFunctionList(serviceType, callback);
         }
     }
 
@@ -54,11 +58,14 @@ export default class Service {
      * 获取接口方法列表和对应版本信息
      */
     getFunctionListAndVersion(serviceType, callback, sysType) {
-        if(!sysType || sysType === SysType.LOCAL) {
+        if (!sysType || sysType === SysType.OTHER) {
             // 本地接口
-            this.webService.getFunctionListAndVersion(callback);
-        }else if (sysType === SysType.OTHER) {
-            this.jarService.getFunctionListAndVersion(callback);
+            let data = this.jarService.getFunctionListAndVersion(serviceType, callback);
+            if (callback && typeof callback === "function") {
+                callback(data);
+            }
+        } else if (sysType === SysType.LOCAL) {
+            this.webService.getFunctionListAndVersion(serviceType, callback);
         }
 
     }
@@ -67,11 +74,14 @@ export default class Service {
      * 列出接口所有版本
      */
     listVersionByFunction(serviceType, functionName, callback, sysType) {
-        if(!sysType || sysType === SysType.LOCAL) {
+        if (!sysType || sysType === SysType.OTHER) {
+            let data = this.jarService.listVersionByFunction(serviceType, functionName, callback);
+            if (callback && typeof callback === "function") {
+                callback(data);
+            }
+        } else if (sysType === SysType.LOCAL) {
             // 本地接口
-            this.webService.listVersionByFunction(callback);
-        }else if (sysType === SysType.OTHER) {
-            this.jarService.listVersionByFunction(callback);
+            this.webService.listVersionByFunction(serviceType, functionName, callback);
         }
     }
 
@@ -79,11 +89,14 @@ export default class Service {
      * 获取接口详情
      */
     getFunctionDetail(serviceType, functionName, callback, sysType) {
-        if(!sysType || sysType === SysType.LOCAL) {
+        if (!sysType || sysType === SysType.OTHER) {
+            let data = this.jarService.getFunctionDetail(serviceType, functionName, callback);
+            if (callback && typeof callback === "function") {
+                callback(data);
+            }
+        } else if (sysType === SysType.LOCAL) {
             // 本地接口
-            this.webService.getFunctionDetail(callback);
-        }else if (sysType === SysType.OTHER) {
-            this.jarService.getFunctionDetail(callback);
+            this.webService.getFunctionDetail(serviceType, functionName, callback);
         }
     }
 }

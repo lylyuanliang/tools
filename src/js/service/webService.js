@@ -1,8 +1,14 @@
-export default class Service {
+export default class WebService {
     constructor($, layer) {
-        this.$ = $;
-        this.baseUrl = "/customize";
-        this.layer = layer;
+        if(!WebService.instance) {
+            this.$ = $;
+            this.baseUrl = "/customize";
+            this.layer = layer;
+
+            WebService.instance = this;
+        }
+
+        return WebService.instance;
     }
 
     /**

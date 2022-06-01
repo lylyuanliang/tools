@@ -1,4 +1,4 @@
-import Constants from "../constant/constants";
+import Constants from "../constant/constants.js";
 
 const fs = require("fs");
 const path = require("path");

@@ -1,7 +1,6 @@
 import Service from "./service/Service.js";
 
 layui.use(["form", "element", "table", "laydate"], function () {
-    debugger;
     let form = layui.form;
     let $ = layui.$;
     let layer = layui.layer;

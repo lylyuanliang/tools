@@ -1,15 +1,16 @@
-import JavaLoaderUtils from "../utils/javaLoaderUtils";
+import JavaLoaderUtils from "../utils/javaLoaderUtils.js";
 
-export default class Service {
+export default class JarService {
     constructor() {
-        if(!Service.instance) {
+        if(!JarService.instance) {
             let CustomizeController = JavaLoaderUtils.loadClass("com.liurl.test.customize.controller.CustomizeController");
-            this.customizeController = new CustomizeController();
-
-            Service.instance = this;
+            if(CustomizeController) {
+                this.customizeController = new CustomizeController();
+                JarService.instance = this;
+            }
         }
 
-        return Service.instance;
+        return JarService.instance;
     }
 
     /**
@@ -31,11 +32,7 @@ export default class Service {
 
         let rtn = JSON.parse(res);
 
-        if (rtn.Result === "true") {
-            return rtn.Data;
-        }else {
-            return {};
-        }
+        return rtn.Result === "true" ? rtn.Data : {};
 
     }
 
