@@ -1,0 +1,47 @@
+.user-service-type{
+    display: flex;
+}
+
+#serviceType {
+    width: 32%;
+}
+
+.user-service-detail-nav-right {
+    width: 11%;
+    height: 100%;
+    z-index: 9999;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+.user-service-detail-tips {
+    width: 97%;
+    text-align: center;
+    color: #ffffff;
+}
+
+div [name="funcNameAndVersion"] {
+    cursor: pointer;
+}
+
+.user-service-detail {
+    position: absolute;
+    top: 8%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 90%;
+    z-index: 9999;
+}
+
+.user-service-detail-shadow {
+    display: none;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" type="text/css" href="static/layui/css/layui.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<!--接口列表-->
+<div class="user-service-type">
+  <div id="serviceType" class="layui-form">
+    <select name="serviceType" lay-verify="" lay-filter="serviceType" lay-search>
+      <option value="none">暂无数据</option>
+    </select>
+  </div>
+</div>
+<!--接口方法列表-->
+<div class="layui-tab" lay-allowClose="true">
+  <ul class="layui-tab-title" name="tabTitle">
+  </ul>
+  <div class="layui-tab-content" name="tabContent">
+
+  </div>
+</div>
+<!--接口详情-->
+<div class="user-service-detail-shadow" name="serviceDetail" >
+  <label class="layui-form-label user-service-detail-tips">点击这里关闭</label>
+  <div class="user-service-detail layui-card">
+    <div class="user-service-params">
+      <div class="user-params">
+        <blockquote class="layui-elem-quote layui-quote-nm">
+          <form class="layui-form layui-form-pane" action="">
+            <div class="layui-form-item">
+              <div class="layui-inline" style="width: 100%">
+                <label class="layui-form-label">接口url</label>
+                <div class="layui-input-inline" style="width: 15%">
+                  <input type="text" name="url"  autocomplete="off"
+                         placeholder="请输入地址"
+                         class="layui-input" lay-filter="serviceUrl">
+                </div>
+                <div class="layui-input-inline" style="width: 35%">
+                  <input type="text" name="url"  autocomplete="off"
+                         placeholder="请输入地址"
+                         class="layui-input" lay-filter="serviceContext">
+                </div>
+                <div class="layui-input-inline" style="width: 13%">
+                  <input type="radio" name="httpVerb" value="GET" title="GET" checked>
+                  <input type="radio" name="httpVerb" value="POST" title="POST">
+                </div>
+                <div class="layui-input-inline">
+                  <button type="button" class="layui-btn layui-btn-primary" id="submit">提交</button>
+                </div>
+              </div>
+              <div class="layui-inline" style="width: 71%">
+                <label class="layui-form-label">接口名称</label>
+                <div class="layui-input-inline" style="width: 50%">
+                  <input type="text" name="title" autocomplete="off"
+                         placeholder="反正输入一点东西嘛"
+                         class="layui-input" lay-filter="functionName">
+                </div>
+                <label class="layui-form-label">接口版本</label>
+                <div class="layui-input-inline" style="width: 10%">
+                  <input type="text" name="title" autocomplete="off"
+                         placeholder="版本"
+                         class="layui-input" lay-filter="functionVersion">
+                </div>
+              </div>
+              <div class="user-param-detail">
+
+              </div>
+            </div>
+          </form>
+        </blockquote>
+      </div>
+
+    </div>
+    <div class="user-service-result">
+      <blockquote class="layui-elem-quote layui-quote-nm">
+        暂无任何内容
+      </blockquote>
+    </div>
+  </div>
+</div>
+<!--右侧导航栏-->
+<div class="user-service-detail-nav-right">
+  <ul class="layui-nav layui-nav-tree" lay-filter="test">
+    <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+    <li class="layui-nav-item layui-nav-itemed">
+      <a href="javascript:;">历史记录</a>
+      <dl class="layui-nav-child">
+        <dd><a href="javascript:;">历史记录待实现</a></dd>
+      </dl>
+    </li>
+  </ul>
+</div>
+
+<script src="static/layui/layui.js" type="text/javascript"></script>
+<script src="js/webIndex.js" type="module"></script>
+</body>
+</html>
