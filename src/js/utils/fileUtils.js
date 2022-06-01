@@ -1,8 +1,8 @@
 import Constants from "../constant/constants.js";
 
-const fs = require("fs");
-const path = require("path");
-const { remote } = require('electron');
+const fs = parent.window.require("fs");
+const path = parent.window.require("path");
+const { remote } = parent.window.require('electron');
 
 export class FileUtils {
     constructor() {

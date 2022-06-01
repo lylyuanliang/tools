@@ -1,9 +1,9 @@
 import {FileUtils} from "./fileUtils.js";
 
-let path = require("path")
+let path = parent.window.require("path")
 let loaded = false;
-let java = require("java");
-const {dialog} = require('electron').remote;
+let java = parent.window.require("java");
+const {dialog} = parent.window.require('electron').remote;
 export default class JavaLoaderUtils {
     static init(jarFilePath) {
         if (!loaded) {

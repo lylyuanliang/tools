@@ -1,40 +1,72 @@
-//JavaScript代码区域
-layui.use('element', function () {
-    var element = layui.element;
-    let $ = layui.$;
+//JS
+layui.use(['element', 'layer', 'util'], function(){
+    var element = layui.element
+        ,layer = layui.layer
+        ,util = layui.util
+        ,$ = layui.$;
 
-    var isShow = true;  //定义一个标志位
-    $('.kit-side-fold').click(function () {
-        //选择出所有的span，并判断是不是hidden
-        $('.layui-nav-item span').each(function () {
-            if ($(this).is(':hidden')) {
-                $(this).show();
-            } else {
-                $(this).hide();
+    //头部事件
+    util.event('lay-header-event', {
+        //左侧菜单事件
+        menuLeft: function(othis){
+            let page = $(othis).attr("page");
+
+            let iframes = document.querySelectorAll("#content iframe");
+            let exist = false;
+            if(iframes) {
+               let len = iframes.length;
+                for (let i = 0; i < len; i++) {
+
+                let iframe = iframes[i];
+                    $(iframe).hide();
+                    let srcPageName = $(iframe).attr("src");
+                    if(srcPageName === page) {
+                        // 存在, 直接显示, 避免页面刷新
+                        $(iframe).show();
+                        exist = true;
+                    }
+                }
             }
-        });
-        //判断isshow的状态
-        if (isShow) {
-            $('.layui-side.layui-bg-black').width(60); //设置宽度
-            $('.kit-side-fold i').css('margin-right', '70%');  //修改图标的位置
-            //将footer和body的宽度修改
-            $('.layui-body').css('left', 60 + 'px');
-            $('.layui-footer').css('left', 60 + 'px');
-            //将二级导航栏隐藏
-            $('dd span').each(function () {
-                $(this).hide();
+
+            if(!exist) {
+                // 不存在, 新增
+                let iframe = $(`<iframe data-frameid=" ${page} " scrolling="auto" frameborder="0" src="${page}" style="width:100%;height:99%;" lay-ifame-event="iframe"></iframe>`);
+                $("#content").append(iframe);
+            }
+
+
+        }
+        ,menuRight: function(){
+            layer.open({
+                type: 1
+                ,content: '<div style="padding: 15px;">处理右侧面板的操作</div>'
+                ,area: ['260px', '100%']
+                ,offset: 'rt' //右上角
+                ,anim: 5
+                ,shadeClose: true
             });
-            //修改标志位
-            isShow = false;
-        } else {
-            $('.layui-side.layui-bg-black').width(200);
-            $('.kit-side-fold i').css('margin-right', '10%');
-            $('.layui-body').css('left', 200 + 'px');
-            $('.layui-footer').css('left', 200 + 'px');
-            $('dd span').each(function () {
-                $(this).show();
-            });
-            isShow = true;
         }
     });
+
+    $("body").on("load", `iframe`, function () {
+       alert(3);
+    });
+
+    util.event('lay-ifame-event', {
+        iframe: function (e) {
+            const iframeWin = e.contentWindow;
+            iframeWin.require = window.require;
+        }
+    }, "load");
+
 });
+
+class HomePage{
+    constructor() {
+
+
+    }
+
+
+
+}
