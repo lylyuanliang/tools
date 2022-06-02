@@ -1,0 +1,26 @@
+.kafka-mes {
+    height: 82%;
+}
+
+.kafka-mes i {
+    position: absolute;
+    right: 3%;
+    margin-top: 8px;
+    z-index: 99;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.user-layui-tab-title li{
+    display: block;
+}
+.user-layui-tab-title{
+    float: left;
+    width: 200px;
+}
+.user-layui-tab-content{
+    float: left;
+    width: 500px;
+}
+
+

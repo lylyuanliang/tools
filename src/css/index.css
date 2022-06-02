@@ -6,15 +6,6 @@
     width: 32%;
 }
 
-.user-service-detail-nav-right {
-    width: 11%;
-    height: 100%;
-    z-index: 9999;
-    position: fixed;
-    right: 0;
-    top: 0;
-}
-
 .user-service-detail-tips {
     width: 97%;
     text-align: center;

@@ -1,0 +1,8 @@
+.user-service-detail-nav-right {
+    width: 12%;
+    height: 100%;
+    z-index: 9999;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
