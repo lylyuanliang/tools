@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/kafka.css">
     <link rel="stylesheet" type="text/css" href="../css/right_his.css">
 </head>
-<body style="height: calc(90vh);">
+<body style="height: calc(90vh);" his_key="">
 <div class="layui-tab layui-tab-card" style="height: 100%;">
     <ul class="layui-tab-title">
         <li class="layui-this">kafka基础设置</li>
@@ -27,7 +27,7 @@
                                     <label class="layui-form-label">名称</label>
                                     <div class="layui-input-block">
                                         <input type="text" name="connectName" required lay-verify="required"
-                                               placeholder="取个名吧" autocomplete="off" class="layui-input">
+                                               placeholder="取个名吧" autocomplete="off" class="layui-input" his_scope="name">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -35,12 +35,12 @@
                                     <div class="layui-input-block">
                                         <input type="text" name="kafkaServer" required lay-verify="required"
                                                placeholder="填写样例:broker1:9092,broker2:9092" autocomplete="off"
-                                               class="layui-input">
+                                               class="layui-input" his_scope="kafkaIp">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <div class="layui-input-block" style="text-align: right;">
-                                        <button class="layui-btn" lay-submit lay-filter="kafkaBaseInfo">立即初始化连接</button>
+                                        <button type="button" class="layui-btn" lay-submit lay-filter="kafkaBaseInfo">立即初始化连接</button>
                                     </div>
                                 </div>
                             </form>
@@ -57,27 +57,28 @@
                         <label class="layui-form-label">topic</label>
                         <div class="layui-input-block" style="display: flex; width: 81%;">
                             <input type="text" name="topic" required lay-verify="required"
-                                   placeholder="输入主题" autocomplete="off" class="layui-input" style="width: 30%">
-                            <button class="layui-btn" lay-submit lay-filter="sendKafkaInfo" style="margin-left: 9px;">
+                                   placeholder="输入主题" autocomplete="off" class="layui-input" style="width: 30%" his_scope="producer.topic">
+                            <button type="button" class="layui-btn" lay-submit lay-filter="sendKafkaInfo" style="margin-left: 9px;">
                                 发送消息
                             </button>
                         </div>
                     </div>
                 </div>
+                <!--设置, 比如消息分割成多份-->
                 <div class="layui-card-body" style="height: 100%">
                     <div class="layui-collapse">
                         <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">从数据库中查询数据</h2>
+                            <h2 class="layui-colla-title"><i class="layui-icon setting-bar">&#xe716;</i></h2>
                             <div class="layui-colla-content">
 
                             </div>
                         </div>
                     </div>
                     <div class="kafka-mes">
-                        <i class="layui-icon">&#xe716;</i>
-                        <textarea name="kafkaMessage" required lay-verify="required"
+<!--                        <i class="layui-icon">&#xe716;</i>-->
+                        <textarea id="messageEdit" name="kafkaMessage" required lay-verify="required"
                                   placeholder="输入待发送的消息,如果是批量信息发送, 请点击右侧'设置'按钮进行'批量设置'"
-                                  class="layui-textarea" style="min-height: 100%;"></textarea>
+                                  class="layui-textarea" style="min-height: 100%;" his_scope="producer.kafkaMsgList"><div style='color:red'>2222</div></textarea>
                     </div>
 
                 </div>
@@ -92,14 +93,14 @@
                         <label class="layui-form-label">groupId</label>
                         <div class="layui-input-block" style="width: 81%;">
                             <input type="text" name="groupId" required lay-verify="required"
-                                   placeholder="输入分组id" autocomplete="off" class="layui-input" style="width: 30%">
+                                   placeholder="输入分组id" autocomplete="off" class="layui-input" style="width: 30%" his_scope="consumer.groupId">
                         </div>
 
 
                             <label class="layui-form-label">是否提交</label>
                             <div class="layui-input-block">
-                                <input type="radio" name="commitFlag" value="是" title="是">
-                                <input type="radio" name="commitFlag" value="否" title="否" checked>
+                                <input type="radio" name="commitFlag" value="是" title="是" his_scope="consumer.isCommitOffset">
+                                <input type="radio" name="commitFlag" value="否" title="否" his_scope="consumer.isCommitOffset" checked>
                             </div>
 
                     </div>
@@ -108,8 +109,8 @@
                         <label class="layui-form-label">topic</label>
                         <div class="layui-input-block" style="display: flex; width: 81%;">
                             <input type="text" name="topic" required lay-verify="required"
-                                   placeholder="输入主题" autocomplete="off" class="layui-input" style="width: 30%">
-                            <button class="layui-btn" lay-submit lay-filter="receiveKafkaInfo"
+                                   placeholder="输入主题" autocomplete="off" class="layui-input" style="width: 30%" his_scope="consumer.topic">
+                            <button type="button" class="layui-btn" lay-submit lay-filter="receiveKafkaInfo"
                                     style="margin-left: 9px;">
                                 接受消息
                             </button>

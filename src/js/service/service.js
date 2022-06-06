@@ -1,6 +1,6 @@
 import SysType from "../enum/SysType.js";
 import WebService from "./webService.js";
-import JarService from "./jarService.js";
+import JarWebService from "./jarWebService.js";
 
 export default class Service {
     constructor($, layer) {
@@ -8,7 +8,7 @@ export default class Service {
             // 本地接口
             this.webService = new WebService($, layer);
             // 远程接口
-            this.jarService = new JarService();
+            this.jarService = new JarWebService();
 
             Service.instance = this;
         }

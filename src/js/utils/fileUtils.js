@@ -92,6 +92,15 @@ export class FileUtils {
         return fileContent;
     }
 
+    static readFile2Obj(filePath) {
+        let content = this.readFile2String(filePath);
+        return content ? JSON.parse(content) : null;
+    }
+
+    static join(filePath1, filePath2) {
+        return path.join(filePath1, filePath2);
+    }
+
     /**
      * 判断文件是否存在
      * @param filePath 文件路径
@@ -127,6 +136,19 @@ export class FileUtils {
         let fullPath = filePath + fileName;
 
         fs.writeFileSync(fullPath, fileContent);
+    }
+
+    /**
+     * 获取默认历史数据保存路径
+     * @returns {*}
+     */
+    static getDefaultHisDataPath(moduleName) {
+        let basePath = this.getBasePath();
+        let fullPath = path.join(basePath, Constants.HIS_DATA_PATH);
+        if (moduleName) {
+            fullPath = path.join(fullPath, moduleName);
+        }
+        return fullPath;
     }
 
     /**

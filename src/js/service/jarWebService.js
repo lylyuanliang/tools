@@ -1,16 +1,16 @@
 import JavaLoaderUtils from "../utils/javaLoaderUtils.js";
 
-export default class JarService {
+export default class JarWebService {
     constructor() {
-        if(!JarService.instance) {
+        if(!JarWebService.instance) {
             let CustomizeController = JavaLoaderUtils.loadClass("com.liurl.test.customize.controller.CustomizeController");
             if(CustomizeController) {
                 this.customizeController = new CustomizeController();
-                JarService.instance = this;
+                JarWebService.instance = this;
             }
         }
 
-        return JarService.instance;
+        return JarWebService.instance;
     }
 
     /**

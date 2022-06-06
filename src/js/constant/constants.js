@@ -14,6 +14,11 @@ export default class Constants {
     static get BACKLOG_LIST_COMMON() {
         return BACKLOG_LIST_COMMON;
     }
+
+    static get HIS_DATA_PATH() {
+        return HIS_DATA_PATH;
+    }
+
 }
 
 const PATH_DATA_DEFAULT = "temp/data/";
@@ -28,4 +33,10 @@ const BACKLOG_PATH_DEFAULT = "/backlog/"
  * 待办事项模板
  * @type {string}
  */
-const BACKLOG_LIST_COMMON = "backlogList.json"
+const BACKLOG_LIST_COMMON = "backlogList.json";
+
+/**
+ * 历史数据保存路径
+ * @type {string}
+ */
+const HIS_DATA_PATH = "temp/his/"
