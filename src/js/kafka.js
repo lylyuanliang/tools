@@ -1,10 +1,11 @@
+const UUID = parent.window.require('uuid');
 import JarAdminClient from "./service/jarAdminClient.js";
 import Schedule from "./service/schedule.js";
 import {FileUtils} from "./utils/fileUtils.js";
 import JarConsumer from "./service/jarConsumer.js";
 import JarProducer from "./service/jarProducer.js";
 
-const UUID = parent.window.require('uuid');
+
 layui.use(["form", "element", "table", "laydate", "layedit", "util"], function () {
     let form = layui.form;
     let $ = layui.$;
@@ -140,7 +141,7 @@ layui.use(["form", "element", "table", "laydate", "layedit", "util"], function (
     });
 
     //监听提交
-    form.on('submit(sendKafkaInfo)', function(data){
+    form.on('submit(getGroupInfoB)', function(data){
         let obj = data.field;
         let groupId = obj.groupId;
         if (!groupId) {
@@ -327,7 +328,7 @@ layui.use(["form", "element", "table", "laydate", "layedit", "util"], function (
         let tableBody = $("#groupInfoBody");
         tableBody.html("");
         let groupListUl = $("#groupList");
-        groupListUl.html(`<li class="layui-this">所有分组</li>`);
+        groupListUl.html(`<li class="layui-this">点击查看所有分组</li>`);
         for (let groupInfo of groupInfoList) {
             let groupId = groupInfo.groupId;
             let partitionList = groupInfo.partitionList;
