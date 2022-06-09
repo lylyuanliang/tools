@@ -1,0 +1,39 @@
+.user-service-detail-nav-right {
+    width: 12%;
+    height: 100%;
+    z-index: 9999;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+.his-info {
+    position: fixed;
+    left: 1%;
+    bottom: 1%;
+    cursor: pointer;
+}
+.his-content {
+    width: 50%;
+    position: fixed;
+    bottom: 8%;
+    display: none;
+    background: #deeceb;
+}
+.his-content i {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.his-content label {
+    color: #777;
+    margin-left: 23px;
+}
+.his-content .his-table-tips {
+
+}
+.his-bar {
+    font-size: 3em;
+    color: #ff5722;
+}

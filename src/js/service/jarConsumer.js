@@ -1,4 +1,5 @@
 import JarCommon from "./jarCommon.js";
+import JavaLoaderUtils from "../utils/javaLoaderUtils.js";
 
 export default class JarConsumer extends JarCommon{
     static getDefaultClassName() {
@@ -15,7 +16,19 @@ export default class JarConsumer extends JarCommon{
      * @param autoCommit 是否提交offset
      */
     receive(servers, groupId, topic, autoCommit) {
-        let response = this.javaObj.receive(servers, groupId, topic, autoCommit);
-        return response;
+        let response = this.javaObj.receiveSync(servers, groupId, topic, autoCommit);
+        let res = JavaLoaderUtils.change2EsList(response, (messBean) => {
+            let topic = messBean.getTopicSync();
+            let offset = messBean.getOffsetSync();
+            let msg = messBean.getMsgSync();
+
+            let obj = {
+                topic: topic,
+                offset: offset,
+                msg: msg
+            };
+            return obj;
+        });
+        return res;
     }
 }

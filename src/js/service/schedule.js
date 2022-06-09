@@ -25,7 +25,7 @@ export default class Schedule {
         this.cancelSchedule(id);
         console.log("启动定时任务",id);
         //执行定时任务
-        console.log(schedule.scheduleJob(id, cron, task));
+        schedule.scheduleJob(id, cron, task);
     }
 
     /**

@@ -24,6 +24,10 @@ export default class JarCommon{
         return this.instance;
     }
 
+    change2JavaList(array) {
+        return JavaLoaderUtils.change2JavaList(array);
+    }
+
     static getDefaultClassName() {
         throw "无默认class类,请指定";
     }

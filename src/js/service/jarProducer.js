@@ -12,8 +12,9 @@ export default class JarProducer extends JarCommon{
      * @param topic kafka主题
      * @param msgList kafka待发送的消息,为一个
      */
-    getGroupInfos(servers, topic, msgList) {
-        let response = this.javaObj.send(servers, topic, msgList);
+    send(servers, topic, msgList) {
+        let msgL = this.change2JavaList(msgList);
+        let response = this.javaObj.sendSync(servers, topic, msgL);
         return response;
     }
 }

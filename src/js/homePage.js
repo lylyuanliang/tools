@@ -1,4 +1,3 @@
-//JS
 layui.use(['element', 'layer', 'util'], function(){
     var element = layui.element
         ,layer = layui.layer
@@ -30,7 +29,7 @@ layui.use(['element', 'layer', 'util'], function(){
 
             if(!exist) {
                 // 不存在, 新增
-                let iframe = $(`<iframe data-frameid=" ${page} " scrolling="auto" frameborder="0" src="${page}" style="width:100%;height:99%;" lay-ifame-event="iframe"></iframe>`);
+                let iframe = $(`<iframe data-frameid="${page}" scrolling="auto" frameborder="0" src="${page}" style="width:100%;height:99%;" lay-ifame-event="iframe"></iframe>`);
                 $("#content").append(iframe);
             }
 
@@ -48,16 +47,6 @@ layui.use(['element', 'layer', 'util'], function(){
         }
     });
 
-    $("body").on("load", `iframe`, function () {
-       alert(3);
-    });
-
-    util.event('lay-ifame-event', {
-        iframe: function (e) {
-            const iframeWin = e.contentWindow;
-            iframeWin.require = window.require;
-        }
-    }, "load");
 
 });
 
@@ -66,6 +55,8 @@ class HomePage{
 
 
     }
+
+
 
 
 

@@ -4,6 +4,7 @@ let path = parent.window.require("path")
 let loaded = false;
 let java = parent.window.require("java");
 const {dialog} = parent.window.require('electron').remote;
+
 export default class JavaLoaderUtils {
     static init(jarFilePath) {
         if (!loaded) {
@@ -69,4 +70,32 @@ export default class JavaLoaderUtils {
     static setLoaded(loadedFlag) {
         loaded = loadedFlag;
     }
+
+    static change2JavaList(array=[]) {
+        let ArrayList = this.loadClass('java.util.ArrayList');
+        let arrayList = new ArrayList();
+        for (let item of array) {
+            arrayList.addSync(item);
+        }
+        return arrayList;
+    }
+
+    static change2EsList(arrayList, valueFun) {
+        let size = arrayList.sizeSync();
+        if(size <= 0) {
+            return [];
+        }
+
+        let array = [];
+        for (let i = 0; i < size; i++) {
+            let value = arrayList.getSync(i);
+            if(typeof valueFun === "function") {
+                value = valueFun(value);
+            }
+            array.push(value);
+        }
+
+        return array;
+    }
+
 }

@@ -23,7 +23,8 @@
 }
 .user-layui-tab-content{
     float: left;
-    width: 500px;
+    width: 60%;
+    height: 100%;
 }
 
 

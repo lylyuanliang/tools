@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../static/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="../css/kafka.css">
-    <link rel="stylesheet" type="text/css" href="../css/right_his.css">
+    <link rel="stylesheet" type="text/css" href="../css/his.css">
 </head>
 <body style="height: calc(90vh);" his_key="">
 <div class="layui-tab layui-tab-card" style="height: 100%;">
@@ -15,8 +15,8 @@
         <li>Consumer</li>
         <li>分组分区情况</li>
     </ul>
-    <!--kafka基础设置-->
     <div class="layui-tab-content" style="height: 90%;">
+        <!--kafka基础设置-->
         <div class="layui-tab-item layui-show">
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md6">
@@ -27,7 +27,8 @@
                                     <label class="layui-form-label">名称</label>
                                     <div class="layui-input-block">
                                         <input type="text" name="connectName" required lay-verify="required"
-                                               placeholder="取个名吧" autocomplete="off" class="layui-input" his_scope="name">
+                                               placeholder="取个名吧" autocomplete="off" class="layui-input"
+                                               his_scope="name">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -40,7 +41,9 @@
                                 </div>
                                 <div class="layui-form-item">
                                     <div class="layui-input-block" style="text-align: right;">
-                                        <button type="button" class="layui-btn" lay-submit lay-filter="kafkaBaseInfo">立即初始化连接</button>
+                                        <button type="button" class="layui-btn" lay-submit lay-filter="kafkaBaseInfo"
+                                                lay-form-event="kafkaBaseInfo">立即初始化连接
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -57,8 +60,10 @@
                         <label class="layui-form-label">topic</label>
                         <div class="layui-input-block" style="display: flex; width: 81%;">
                             <input type="text" name="topic" required lay-verify="required"
-                                   placeholder="输入主题" autocomplete="off" class="layui-input" style="width: 30%" his_scope="producer.topic">
-                            <button type="button" class="layui-btn" lay-submit lay-filter="sendKafkaInfo" style="margin-left: 9px;">
+                                   placeholder="输入主题" autocomplete="off" class="layui-input" style="width: 30%"
+                                   his_scope="producer.topic">
+                            <button type="button" class="layui-btn" lay-submit lay-filter="sendKafkaInfo"
+                                    style="margin-left: 9px;">
                                 发送消息
                             </button>
                         </div>
@@ -75,10 +80,11 @@
                         </div>
                     </div>
                     <div class="kafka-mes">
-<!--                        <i class="layui-icon">&#xe716;</i>-->
-                        <textarea id="messageEdit" name="kafkaMessage" required lay-verify="required"
-                                  placeholder="输入待发送的消息,如果是批量信息发送, 请点击右侧'设置'按钮进行'批量设置'"
-                                  class="layui-textarea" style="min-height: 100%;" his_scope="producer.kafkaMsgList"><div style='color:red'>2222</div></textarea>
+                        <!--                        <i class="layui-icon">&#xe716;</i>-->
+                        <textarea id="messageEdit" name="kafkaMessage"
+                                  placeholder="输入待发送的消息,如果是批量信息发送, 请点击上方'设置'按钮进行'批量设置'"
+                                  class="layui-textarea" style="min-height: 100%;"
+                                  his_scope="producer.kafkaMsgList"></textarea>
                     </div>
 
                 </div>
@@ -93,15 +99,18 @@
                         <label class="layui-form-label">groupId</label>
                         <div class="layui-input-block" style="width: 81%;">
                             <input type="text" name="groupId" required lay-verify="required"
-                                   placeholder="输入分组id" autocomplete="off" class="layui-input" style="width: 30%" his_scope="consumer.groupId">
+                                   placeholder="输入分组id" autocomplete="off" class="layui-input" style="width: 30%"
+                                   his_scope="consumer.groupId">
                         </div>
 
 
-                            <label class="layui-form-label">是否提交</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="commitFlag" value="是" title="是" his_scope="consumer.isCommitOffset">
-                                <input type="radio" name="commitFlag" value="否" title="否" his_scope="consumer.isCommitOffset" checked>
-                            </div>
+                        <label class="layui-form-label">是否提交</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="commitFlag" value="true" title="是"
+                                   his_scope="consumer.isCommitOffset">
+                            <input type="radio" name="commitFlag" value="false" title="否"
+                                   his_scope="consumer.isCommitOffset" checked>
+                        </div>
 
                     </div>
 
@@ -109,7 +118,8 @@
                         <label class="layui-form-label">topic</label>
                         <div class="layui-input-block" style="display: flex; width: 81%;">
                             <input type="text" name="topic" required lay-verify="required"
-                                   placeholder="输入主题" autocomplete="off" class="layui-input" style="width: 30%" his_scope="consumer.topic">
+                                   placeholder="输入主题" autocomplete="off" class="layui-input" style="width: 30%"
+                                   his_scope="consumer.topic">
                             <button type="button" class="layui-btn" lay-submit lay-filter="receiveKafkaInfo"
                                     style="margin-left: 9px;">
                                 接受消息
@@ -120,8 +130,8 @@
                 </div>
                 <div class="layui-card-body" style="height: 70%">
                     <div class="kafka-mes">
-                        <textarea name="kafkaMessage" required lay-verify="required" placeholder="暂未接收到消息"
-                                  class="layui-textarea layui-disabled" readonly style="min-height: 100%;"></textarea>
+                        <textarea name="kafkaMessageReceive" placeholder="暂未接收到消息"
+                                  class="layui-textarea" style="min-height: 100%;"></textarea>
                     </div>
 
                 </div>
@@ -129,69 +139,56 @@
         </div>
         <!--分组分区信息-->
         <div class="layui-tab-item" style="height: 100%">
+            <div class="layui-card layui-form" action="" style="height: 100%">
+                <div class="layui-card-header">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">topic</label>
+                        <div class="layui-input-block" style="display: flex; width: 81%;">
+                            <input type="text" name="groupId" required lay-verify="required"
+                                   placeholder="输入groupId" autocomplete="off" class="layui-input" style="width: 30%">
+                            <label class="layui-form-label">是否提交</label>
+                            <div class="layui-input-block" style="line-height: 0;margin-left: 12px;">
+                                <input type="checkbox" name="isCommit" lay-skin="switch" lay-filter="switchTest" lay-text="commit|!commit">
+                            </div>
+                            <button type="button" class="layui-btn" lay-submit lay-filter="sendKafkaInfo"
+                                    style="margin-left: 2%;">
+                                获取分组信息
+                            </button>
+                        </div>
+                    </div>
+                </div>
             <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-                <ul class="layui-tab-title user-layui-tab-title">
-                    <li class="layui-this">网站设置</li>
-                    <li>用户管理</li>
-                    <li>权限分配</li>
-                    <li>商品管理</li>
-                    <li>订单管理</li>
+                <ul class="layui-tab-title user-layui-tab-title" id="groupList">
+                    <!--groupId-->
+                    <li class="layui-this" value="all">点击查看所有分组</li>
+
                 </ul>
                 <div class="layui-tab-content user-layui-tab-content" style="height: 100px;">
                     <div class="layui-tab-item layui-show">
-                        <table class="layui-table" lay-even="" lay-skin="row">
+                        <table class="layui-table" id="groupInfoTable" lay-filter="groupInfoTable">
                             <colgroup>
-                                <col width="150">
-                                <col width="150">
-                                <col width="200">
-                                <col>
+                                <col width="30">
+                                <col width="30">
+                                <col width="10">
+                                <col width="10">
+                                <col width="10">
+                                <col width="10">
                             </colgroup>
                             <thead>
                             <tr>
-                                <th>人物</th>
-                                <th>民族</th>
-                                <th>出场时间</th>
-                                <th>格言</th>
+                                <th>分组id</th>
+                                <th>消息主题</th>
+                                <th>start</th>
+                                <th>end</th>
+                                <th>offset</th>
+                                <th>lag</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>贤心</td>
-                                <td>汉族</td>
-                                <td>1989-10-14</td>
-                                <td>人生似修行</td>
-                            </tr>
-                            <tr>
-                                <td>张爱玲</td>
-                                <td>汉族</td>
-                                <td>1920-09-30</td>
-                                <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-                            </tr>
-                            <tr>
-                                <td>Helen Keller</td>
-                                <td>拉丁美裔</td>
-                                <td>1880-06-27</td>
-                                <td> Life is either a daring adventure or nothing.</td>
-                            </tr>
-                            <tr>
-                                <td>岳飞</td>
-                                <td>汉族</td>
-                                <td>1103-北宋崇宁二年</td>
-                                <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
-                            </tr>
-                            <tr>
-                                <td>孟子</td>
-                                <td>华夏族（汉族）</td>
-                                <td>公元前-372年</td>
-                                <td>猿强，则国强。国强，则猿更强！ </td>
-                            </tr>
+                            <tbody id="groupInfoBody">
+
                             </tbody>
                         </table>
                     </div>
-                    <div class="layui-tab-item">内容2</div>
-                    <div class="layui-tab-item">内容3</div>
-                    <div class="layui-tab-item">内容4</div>
-                    <div class="layui-tab-item">内容5</div>
                 </div>
             </div>
         </div>
@@ -210,7 +207,20 @@
 <!--            </li>-->
 <!--        </ul>-->
 <!--    </div>-->
+<div class="his-info" lay-his-event="openKafkaList">
+    <i class="layui-icon his-bar">&#xe68d;</i>
+</div>
+<div class="his-content">
+    <tips class="his-table-tips"><label>历史列表双击选择</label><i class="layui-icon" lay-his-event="closeHisList">&#x1007;</i>
+    </tips>
+    <table class="layui-table" id="hisTable" lay-filter="hisTable" style="margin: 0">
 
+    </table>
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 <script src="../static/layui/layui.js" type="text/javascript"></script>
 <script src="../js/kafka.js" type="module"></script>
 </body>

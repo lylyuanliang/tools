@@ -1,4 +1,5 @@
 import JarCommon from "./jarCommon.js";
+import JavaLoaderUtils from "../utils/javaLoaderUtils.js";
 
 export default class JarAdminClient extends JarCommon{
     static getDefaultClassName() {
@@ -18,11 +19,42 @@ export default class JarAdminClient extends JarCommon{
     getGroupInfos(servers, autoCommit, specialGroupId) {
         let response;
         if (autoCommit && specialGroupId) {
-            response = this.javaObj.getGroupInfos(servers, autoCommit, specialGroupId);
+            response = this.javaObj.getGroupInfosSync(servers, autoCommit, specialGroupId);
         }else {
-            response = this.javaObj.getGroupInfos(servers);
+            response = this.javaObj.getGroupInfosSync(servers);
         }
 
-        return response;
+        if (!response) {
+            return [];
+        }
+
+        return JavaLoaderUtils.change2EsList(response, this.change2JavaObj);
+    }
+
+    change2JavaObj(groupInfoBean) {
+        let groupId = groupInfoBean.getGroupIdSync();
+        let partitionList = groupInfoBean.getPartitionListSync();
+
+        let partitionArray = JavaLoaderUtils.change2EsList(partitionList, (partition) => {
+            let topic = partition.getTopicSync();
+            let start = partition.getStartSync();
+            let end = partition.getEndSync();
+            let offset = partition.getOffsetSync();
+            let lag = partition.getLagSync();
+
+            return {
+                topic: topic,
+                start: start,
+                end: end,
+                offset: offset,
+                lag: lag
+            };
+        });
+
+        let obj = {
+            groupId: groupId,
+            partitionList: partitionArray
+        };
+        return obj;
     }
 }
