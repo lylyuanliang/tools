@@ -3,7 +3,7 @@ kafka工具
 
 ## 安装yarn
 [官网地址](https://yarn.bootcss.com/)
-> `npm install --global yarn`
+> `npm install --global yarn` <br>
 > `yarn --version`
 
 ## 安装项目依赖
