@@ -2,13 +2,24 @@
 kafka工具
 
 # 项目依赖
-## 安装yarn
-[官网地址](https://yarn.bootcss.com/)
+>## 安装yarn
+>[官网地址](https://yarn.bootcss.com/) <br>
 > `npm install --global yarn` <br>
 > `yarn --version`
 > 注: 记得将 `node_global`对应的路径添加到环境变量
-
-## 安装项目依赖
+> ### 查看镜像地址
+> `yarn config get registry`
+> ### 设置淘宝镜像
+> `yarn config set registry https://registry.npmmirror.com/`
+> ### 还原镜像地址
+> `yarn config set registry https://registry.yarnpkg.com`
+> ### 镜像管理工具
+> `yarn global add yrm`
+> ### electron镜像设置
+> `yarn config set electron_mirror https://npmmirror.com/mirrors/electron/`
+>   - 查看所有镜像
+>       `yrm ls`
+> ### 安装项目依赖
 > `yarn install`
 
 # node 版本控制
