@@ -22,6 +22,14 @@ kafka工具
 > ### 安装项目依赖
 > `yarn install`
 
+# 项目启动
+> - 项目启动 `electron-forge start` 
+>   - 指定开发环境以打开开发者工具`cross-env NODE_ENV=development electron-forge start`
+> - 打包 `electron-forge package`
+
+# node java 说明
+> `https://github.com/joeferner/node-java`
+
 # node 版本控制
 > ## 工具
 > `nvm`
@@ -45,3 +53,14 @@ kafka工具
 >   - 使用最新版本 `nvm use latest`
 >   - 使用长期支持版本 `nvm use lts`
 >   - 使用你已安装的任何其他版本 `nvm use version-number`
+
+# 可能遇到的问题
+> - `gyp: name 'openssl_fips' is not defined while evaluating condition 'openssl_fips != ""' in binding.gyp while trying to load binding.gyp` <br>
+> 解决办法: 
+>   - 修改项目下 `node_modules\java`路径中的文件 `binding.gyp`, 在`variables`节点中添加`"openssl_fips" : "0"`即可. (记得json格式, 如果加载顶部, 记得加`,`)
+>
+> 
+> - 启动之后在开发者工具中报错`Uncaught Error: Cannot find module '../build/jvm_dll_path.json'` <br>
+> 解决办法: 
+>   - 1.在`node_modules/java`文件夹中运行`node postInstall.js` <br>
+>   - 2.或者直接在`node_modules\java\build`中创建一个名为jvm_dll_path.json的文件并将服务器路径粘贴到该文件中,例如`";C:\\Program Files\\Java\\jdkX.X.X_XXX\\jre\\bin\\server"`
