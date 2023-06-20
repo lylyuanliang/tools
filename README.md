@@ -23,9 +23,10 @@ kafka工具
 > `yarn install`
 
 # 项目启动
-> - 项目启动 `electron-forge start` 或者 `npm run start`
+> - ~~项目启动 `electron-forge start` 或者 `npm run start`~~
 >   - 指定开发环境以打开开发者工具`cross-env NODE_ENV=development electron-forge start`
-> - 打包 `electron-forge package` 或者 `npm run package`
+> - ~~打包 `electron-forge package` 或者 `npm run package`~~
+> - 打包 `yarn run package` 或者 `electron-forge package`
 
 # node java 说明
 > `https://github.com/joeferner/node-java`
